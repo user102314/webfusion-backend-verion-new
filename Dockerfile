@@ -6,7 +6,8 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Étape 2 : Exécution de l'application
-FROM openjdk:17-jdk-slim
+# On utilise 'eclipse-temurin' qui est l'image standard actuelle pour Java
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
